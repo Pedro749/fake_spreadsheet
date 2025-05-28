@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Web - Table</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <main class="p-5">
+            <header><h1>Fake Planilha</h1></header>
+            <section>
+                <div>Preencha as informações</div>
+                <div class="row g-3 form-group">
+                    <div class="col-md-3">
+                        <label for="plan_type">Tipo</label>
+                        <select id="plan_type" name="plan_type" onchange="changeType()" class="form-select">
+                            <option selected>Selecione uma opção</option>
+                            <option value="month">Mensal</option>
+                            <option value="week">Semanal</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="plan_value">Valor</label>
+                        <input class="form-control" name="plan_value" oninput="maskReal(this)" onchange="clean()" id="plan_value" type="text" />
+                    </div>
+                    <div class="col-md-3">
+                        <label for="plan_acresc">Acréscimo (mês/Semana)</label>
+                        <input class="form-control" name="plan_acresc" oninput="maskReal(this)" onchange="clean()" id="plan_acresc" type="text" />
+                    </div>
+                    <div class="col-md-3">
+                        <label for="plan_init">Data Início</label>
+                        <input class="form-control" name="plan_init" id="plan_init" type="date" onchange="clean()" />
+                    </div>
+                </div>
+                <div class="row pt-3">
+                    <div class="col-md-6">
+                        <label for="plan_title">Título</label>
+                        <input class="form-control" oninput="changeTitle(this)" name="plan_title" id="plan_title" type="text" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="plan_obs">Observação</label>
+                        <input class="form-control" oninput="changeObs(this)" name="plan_obs" id="plan_obs" type="text" />
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="row pt-3">
+                    <label for="plan_participant">Participante</label>
+                    <div class="input-group mb-3">
+                        <input
+                            type="text"
+                            id="plan_participant"
+                            name="plan_participant"
+                            class="form-control"
+                            placeholder="Nome Participante"
+                            aria-label="Nome Participante"
+                            aria-describedby="button-addon2"
+                        />
+                        <button class="btn btn-primary" onclick="addParticipant()" type="button" id="button-addon2">Adicionar</button>
+                    </div>
+                </div>
+            </section>
+            <section id="print_plan" >
+                <h2 id="table_title" class="text-center text-white p-3 bg-plain">Insira um Título</h2>
+                
+                <table id="table_participant" class="table" style="margin-top: -8px; margin-bottom: -8px;">
+                    <thead>
+                        <tr class="bg-plain">
+                            <th>Nome</th>
+                            <th id="type_table">Mês</th>
+                            <th>Valor</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Linhas adicionadas aqui -->
+                    </tbody>
+                </table>
+
+                <h3 id="table_obs" class="text-center bg-plain text-white p-3"></h3>
+            </section>
+
+            <section>
+                <button class="btn btn-primary" onclick="makeImage('print_plan')">Imprimir</button>
+            </section>
+        </main>
+        <script src="/js/main.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    </body>
+</html>
