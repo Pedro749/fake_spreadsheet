@@ -200,13 +200,20 @@ function addParticipant() {
     contador++;
 }
 
-function makeImage(section_id) {
-    const section = document.getElementById(section_id);
+function makeImage() {
+    const section = document.getElementById('print_plan');
+    const preview = document.getElementById('previewContainer');
 
-    html2canvas(section, { scale: 2 }).then((canvas) => {
-        const link = document.createElement("a");
-        link.download = "consorcio.png";
-        link.href = canvas.toDataURL("image/png");
+    preview.innerHTML = section.innerHTML;
+
+    preview.style.fontFamily = window.getComputedStyle(section).fontFamily;
+    preview.style.backgroundColor = window.getComputedStyle(section).backgroundColor;
+    preview.style.padding = window.getComputedStyle(section).padding;
+
+    html2canvas(preview, { scale: 2 }).then(canvas => {
+    const link = document.createElement('a');
+        link.download = "consorcio.jpg";
+        link.href = canvas.toDataURL('image/jpeg', 0.95);
         link.click();
     });
 }
